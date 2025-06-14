@@ -1,0 +1,66 @@
+Runtime polymorphism
+   we use abstract class to create an object here 
+   abstract class is a class with no body ie function/method , we cannot create object with this class
+   this abstract class is then inherited by virtual function using pointer
+syntax:
+   virtual int function_name(arguments)=0;
+  this virtual gets prototype from the abstract class
+--------------------------------------------------------------------
+In this example i have used an abstract class RBI which is then inherited by the sub classes
+---i have used CPP code here---
+#include<iostream>
+#include<stdio.h>
+#include<conio.h>
+
+class RBI{
+  public:
+  RBI()
+  {
+ //this is the constructor can be omitted 
+  }
+  virtual int bank(int x)=0; //declaring the virtual class
+  };
+class SBI:public RBI
+{
+  public:
+  int bank(int x){  // virtual class's prototype is inherirted here
+    int z;
+    cin>>z;
+    cout<<"the amount in SBI= ";
+    return z;
+    }
+  };
+class UBI:public RBI
+{
+  public:
+  int bank(int x){
+    int z;
+    cin>>z;
+    cout<<"the amount in UBI= ";
+    return z;
+    }
+  };
+void main(){
+  clrscr();
+  int x,ch;
+  RBI *obj;
+  do{
+    cout<<"Enter 1 for SBI"<<endl;
+    cout<<"Enter 2 for UBI"<<endl;
+    if(ch>=1 && ch<=2){
+      cout<<"Enter the deposit amount:"<<endl;
+      cin>>x;
+      }
+    switch(ch){
+      case 2:
+      obj=new UBI;
+      cout<<obj->bank(x)<<endl;
+      break;
+       case 1:
+      obj=new SBI;
+      cout<<obj->bank(x)<<endl;
+      break;
+      case 0: exit(0);
+      default: cout<<"Invalid choice";
+      }
+    }
